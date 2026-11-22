@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.nuxt/
+.output/
+.data/
+.cache/
+playground/.nuxt/
+playground/.output/
+playground/.data/
+test/fixtures/**/.nuxt/
+test/fixtures/**/.output/
+*.tgz
+.env
