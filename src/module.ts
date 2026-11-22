@@ -100,7 +100,10 @@ export default defineNuxtModule<ModuleOptions>({
 		const apiBase = `/${String(options.apiBase || "/api/_avdeb").replace(/^\/+|\/+$/g, "")}`;
 
 		// Server-only settings. Every key can be overridden at runtime with NUXT_AVDEB_* variables.
-		const server: Record<string, unknown> = { refCode: "", apiKey: "" };
+		// The referral code from .env / the build environment is baked in, so `node .output/server` and
+		// `nuxt generate` work without extra runtime variables. The secret key is only read at runtime.
+		const env = process.env;
+		const server: Record<string, unknown> = { refCode: env.NUXT_AVDEB_REF_CODE || env.AVDEB_REF_CODE || "", apiKey: "" };
 		for (const key of SERVER_KEYS) if (options[key] !== undefined) server[key] = options[key];
 		const runtimeConfig = nuxt.options.runtimeConfig as Record<string, unknown> & { public: Record<string, unknown> };
 		runtimeConfig.avdeb = { ...server, ...(runtimeConfig.avdeb as object | undefined) };

@@ -36,7 +36,7 @@ export default defineNuxtConfig({
 
 ## Configuration
 
-Your referral code is added as `?ref=` to every AVDEB link. Instead of putting it in the config, you can set it as an environment variable at build or run time:
+Your referral code is added as `?ref=` to every AVDEB link. Instead of putting it in the config, you can set it as an environment variable (or in `.env`). The referral code is read at build time and can be changed at run time; the secret key is only read at run time, by the server:
 
 ```sh
 NUXT_AVDEB_REF_CODE=YOURCODE
